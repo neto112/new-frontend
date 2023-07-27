@@ -24,7 +24,7 @@ export default function useComposable() {
       return format(date, "HH:mm");
     }
   }
-  function formatPriceValue(value: number, locale: string = "pt-BR") {
+  function formatPriceValue(value: number, locale = "pt-BR") {
     if (typeof value === "number") {
       return value.toLocaleString(locale, {
         minimumFractionDigits: 2,
