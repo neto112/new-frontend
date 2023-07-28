@@ -10,10 +10,10 @@
           <Menu @click="toggleNavigation" />
         </button>
         <div class="flex-1 px-4">Seja bem vindo</div>
-        <div>
-          Logout
-          <!-- Add any additional buttons or icons for the app bar -->
-        </div>
+        <Logout />
+        {{ totalItems }}
+        <CartOutline v-if="totalItems === 0" />
+        <Cart v-else />
       </div>
     </header>
 
@@ -138,10 +138,18 @@ import { ref } from "vue";
 import useComp from "./useComp";
 import ViewDashboard from "vue-material-design-icons/ViewDashboard.vue";
 import Cart from "vue-material-design-icons/Cart.vue";
+import CartOutline from "vue-material-design-icons/CartOutline.vue";
 import ChevronDown from "vue-material-design-icons/ChevronDown.vue";
 import Login from "vue-material-design-icons/Login.vue";
 import Logout from "vue-material-design-icons/Logout.vue";
 import Menu from "vue-material-design-icons/Menu.vue";
+
+import { useCartStore } from "./stores/cart";
+
+const cartStore = useCartStore();
+const totalItems = cartStore.cartItems
+  .map((i) => i.quantity)
+  .reduce((a, b) => a + b, 0);
 
 const showNagivation = ref(true);
 const showEcommerce = ref(false);

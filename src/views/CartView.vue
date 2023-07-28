@@ -6,7 +6,11 @@
       :key="product.id"
       :product="product"
     />
-    <CartSummaryPaymentCard />
+    <!-- CartSummaryPaymentCard -->
+    <div>
+      <h3>Cart Total: ${{ cart_total.toFixed(2) }}</h3>
+      <button class="view-product-button">Pay by Credit Card</button>
+    </div>
   </div>
 </template>
 
@@ -16,6 +20,7 @@ import CartSummaryPaymentCard from "../components/cart/CartSummaryPaymentCard.vu
 import { useCartStore } from "../stores/cart";
 
 const cartStore = useCartStore();
+const cart_total = cartStore.cartTotal;
 const products = cartStore.cartItems;
 </script>
 
