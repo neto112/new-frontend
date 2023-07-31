@@ -33,6 +33,7 @@ export const useCartStore = defineStore({
         this.cart.push({ ...product, quantity: 1 })
       }
     },
+
     removeFromCart(product: Product) {
       const item = this.cart.find((i) => i.id === product.id)
 
@@ -43,6 +44,13 @@ export const useCartStore = defineStore({
           this.cart = this.cart.filter((i) => i.id !== product.id)
         }
       }
+    },
+    removeAllQuantityFromCart(product: Product) {
+      const item = this.cart.find((i) => i.id === product.id)
+      if (item) {
+        this.cart = this.cart.filter((i) => i.id !== product.id)
+      }
     }
-  }
+  },
+  persist: true
 })
