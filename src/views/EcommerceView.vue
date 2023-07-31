@@ -1,13 +1,13 @@
 <template>
   <div>
     <img src="@/assets/img/home-cart.png" alt="HomeCart" style="width: 100%" />
-    <div class="grid grid-cols-2 m-4">
+    <div class="grid grid-cols-2 m-4 w-[70%] mx-auto">
       <div
-        class="bg-gray-200 rounded-lg shadow-md p-4 m-2 grid grid-cols-4"
+        class="bg-gray-200 rounded-lg shadow-md p-4 m-2 grid grid-cols-5"
         v-for="product in items"
         :key="product"
       >
-        <div class="col-span-3">
+        <div class="col-span-4">
           <h3 class="text-xl font-semibold">{{ product.name }}</h3>
           <h5 class="text-gray-600">Price: ${{ product.price.toFixed(2) }}</h5>
           <p class="text-gray-800">
@@ -60,7 +60,4 @@ const productTotal = (product: Product) => {
 </script>
 
 <style scoped>
-.cursor-pointer {
-  cursor: pointer;
-}
 </style>

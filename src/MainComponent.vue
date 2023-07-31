@@ -1,19 +1,31 @@
 <template>
   <div>
     <!-- drawer init and show -->
-    <header class="bg-white shadow-md">
-      <div class="px-4 py-2 flex items-center">
-        <button
-          type="button"
-          class="text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 top-2.5 right-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
-        >
-          <Menu @click="toggleNavigation" />
-        </button>
-        <div class="flex-1 px-4">Seja bem vindo</div>
-        <Logout />
-        {{ totalItems }}
-        <CartOutline v-if="totalItems === 0" />
-        <Cart v-else />
+    <header class="bg-white shadow-md p-2">
+      <div
+        class="items-center justify-between w-full md:flex md:w-auto md:order-1"
+      >
+        <ul class="flex flex-col md:flex-row md:space-x-2 items-center">
+          <li>
+            <button
+              type="button"
+              class="text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 top-2.5 right-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
+            >
+              <Menu @click="toggleNavigation" />
+            </button>
+          </li>
+          <li>
+            <div class="flex-1 px-4">Seja bem vindo</div>
+          </li>
+        </ul>
+        <ul class="flex flex-col md:flex-row md:space-x-2 items-center">
+          <li>
+            <ProductDescriptionDrawer />
+          </li>
+          <li>
+            <Logout />
+          </li>
+        </ul>
       </div>
     </header>
 
@@ -138,20 +150,13 @@ import { ref } from "vue";
 import useComp from "./useComp";
 import ViewDashboard from "vue-material-design-icons/ViewDashboard.vue";
 import Cart from "vue-material-design-icons/Cart.vue";
-import CartOutline from "vue-material-design-icons/CartOutline.vue";
 import ChevronDown from "vue-material-design-icons/ChevronDown.vue";
 import Login from "vue-material-design-icons/Login.vue";
 import Logout from "vue-material-design-icons/Logout.vue";
 import Menu from "vue-material-design-icons/Menu.vue";
+import ProductDescriptionDrawer from "./components/cart/ProductDescriptionDrawer.vue";
 
-import { useCartStore } from "./stores/cart";
-
-const cartStore = useCartStore();
-const totalItems = cartStore.cartItems
-  .map((i) => i.quantity)
-  .reduce((a, b) => a + b, 0);
-
-const showNagivation = ref(true);
+const showNagivation = ref(false);
 const showEcommerce = ref(false);
 const showDrawer = ref(false);
 
