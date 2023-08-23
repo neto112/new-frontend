@@ -18,4 +18,12 @@ const router = createRouter({
   ]
 })
 
+router.beforeEach((to, _from, next) => {
+  if (to.path === "/") {
+    next("/dashboard")
+  } else {
+    next();
+  }
+})
+
 export default router

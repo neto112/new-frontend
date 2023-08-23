@@ -165,7 +165,6 @@ const toggleNavigation = () => {
 };
 
 const toggleEcommerce = () => {
-  console.log(showEcommerce.value, "teste");
   showEcommerce.value = !showEcommerce.value;
 };
 
