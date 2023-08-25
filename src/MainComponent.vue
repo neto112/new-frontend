@@ -2,10 +2,8 @@
   <div>
     <!-- drawer init and show -->
     <header class="bg-white shadow-md p-2">
-      <div
-        class="items-center justify-between w-full md:flex md:w-auto md:order-1"
-      >
-        <ul class="flex flex-col md:flex-row md:space-x-2 items-center">
+      <div class="items-center justify-between flex">
+        <ul class="flex items-center">
           <li>
             <button
               type="button"
@@ -18,7 +16,7 @@
             <div class="flex-1 px-4">Seja bem vindo</div>
           </li>
         </ul>
-        <ul class="flex flex-col md:flex-row md:space-x-2 items-center">
+        <ul class="flex space-x-2 items-center">
           <li>
             <ProductDescriptionDrawer />
           </li>
