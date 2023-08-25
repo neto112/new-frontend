@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import MainComponent from '../MainComponent.vue'
 import DashboardView from '../views/DashboardView.vue'
 import EcommerceView from '../views/EcommerceView.vue'
+import TicTacToe from '../views/Games/TicTacToe.vue'
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -13,6 +14,7 @@ const router = createRouter({
       children: [
         { path: 'dashboard', component: DashboardView },
         { path: 'ecommerce', component: EcommerceView },
+        { path: 'games', component: TicTacToe },
       ]
     },
   ]

@@ -79,6 +79,45 @@
           </li>
           <li>
             <button
+              @click="toggleGames"
+              type="button"
+              class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+              aria-controls="dropdown-example"
+              data-collapse-toggle="dropdown-example"
+            >
+              <Controller class="text-blue-500" />
+              <span class="flex-1 ml-3 text-left whitespace-nowrap"
+                >Games
+              </span>
+              <ChevronDown />
+            </button>
+            <ul id="dropdown-example" class="py-2 space-y-2" v-show="showGames">
+              <li>
+                <a
+                  href="/games"
+                  class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  >TicTacToe</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  >Domino</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  >Hangman</a
+                >
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <button
               @click="toggleEcommerce"
               type="button"
               class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
@@ -147,8 +186,9 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import useComp from "./useComp";
+// import useComp from "./useComp";
 import ViewDashboard from "vue-material-design-icons/ViewDashboard.vue";
+import Controller from "vue-material-design-icons/Controller.vue";
 import Cart from "vue-material-design-icons/Cart.vue";
 import ChevronDown from "vue-material-design-icons/ChevronDown.vue";
 import Login from "vue-material-design-icons/Login.vue";
@@ -158,7 +198,7 @@ import ProductDescriptionDrawer from "./components/cart/ProductDescriptionDrawer
 
 const showNagivation = ref(false);
 const showEcommerce = ref(false);
-const showDrawer = ref(false);
+const showGames = ref(false);
 
 const toggleNavigation = () => {
   showNagivation.value = !showNagivation.value;
@@ -168,11 +208,9 @@ const toggleEcommerce = () => {
   showEcommerce.value = !showEcommerce.value;
 };
 
-const toggleDrawer = () => {
-  showDrawer.value = !showDrawer.value;
+const toggleGames = () => {
+  showGames.value = !showGames.value;
 };
-
-const { reuseData, reuseMethod, formatPriceValue } = useComp();
 </script>
 
 <style scoped>
