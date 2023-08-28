@@ -1,19 +1,52 @@
 <template>
   <div class="min-h-screen md:min-h-0">
-    <header class="relative grid grid-cols-3 items-center gap-5 mb-16 md:mb-5">
-      <ArrowLeftBold class="cursor-pointer" @click="emit('back')" />
+    <ModalView :isOpen="isModalOpen" :title="modalTitle">
+      <template #description>
+        <div
+          v-if="hasWon"
+          class="flex gap-[9px] items-center justify-center md:gao-6"
+          :class="turn === 'X' ? 'text-black' : ''"
+        >
+          <XIcon v-if="turn === 'X'" class="w-7 md:w-16" /><OIcon
+            v-else
+            class="w-7 md:w-16"
+          /><span>takes the round</span>
+        </div>
+        <div v-else-if="hasTied">Round Tied</div>
+        <div v-else>Restart Game?</div>
+      </template>
+      <button
+        class="bg-zinc-300 rounded-2xl px-4 pt-[15px] pb-[17px] mr-4 md:btn"
+        @click="backHome"
+      >
+        {{ wannaRestart ? "No, cancel" : "Quit" }}
+      </button>
+      <button
+        class="bg-amber-400 rounded-2xl px-4 pt-[15px] pb-[17px] mr-4 md:btn"
+        @click="nextRound"
+      >
+        {{ wannaRestart ? "Yes, restart" : "Next round" }}
+      </button>
+    </ModalView>
+    <header class="grid grid-cols-3 items-center gap-5 mb-16 md:mb-5">
+      <button
+        @click="emit('back')"
+        class="class-restart bg-zinc-300 class-restart w-10 aspect-square self-start md:btn md:btn md:w-[52px] rounded-2xl"
+      >
+        <ArrowLeftBold class="w-4 md:w-5" />
+      </button>
       <div
-        class="p-[9px] pb-[13px] flex items-center justify-center gap-[9px] uppercase font-bold text-sm md:text-base md:gap-[13px] md:p-[13px] md:pb-[19px]"
+        class="class-restart p-[9px] pb-[13px] flex items-center justify-center gap-[9px] uppercase font-bold text-sm md:text-base md:gap-[13px] md:p-[13px] md:pb-[19px]"
       >
         <XIcon v-if="turn === 'X'" class="w-4 md:w-5" />
         <OIcon v-else class="w-4 md:w-5" />
         <span class="leading-none">Turn</span>
       </div>
       <button
-        class="w-10 aspect-square self-start ml-auto md:btn md:btn md:w-[52px]"
+        class="bg-zinc-300 class-restart w-10 aspect-square self-start ml-auto md:btn md:btn md:w-[52px] rounded-2xl"
         @click="handleRestart"
       >
-        <Restart class="w-4 md:w-5 mx-auto" />
+        <Restart class="w-4 md:w-5" />
       </button>
       <p
         v-if="isCpuPlaying"
@@ -24,15 +57,16 @@
       </p>
     </header>
     <main class="grid grid-cols-3 gap-5">
-      <!-- <BoardBox
+      <BoardBox
         v-for="(box, index) in board"
+        :key="index"
         :mark="box"
         :index="index"
         :is-cpu-playing="isCpuPlaying"
         :highlighted="highlightedBoxes.includes(index)"
         :current-turn="turn"
         @update-board="updateBoard"
-      /> -->
+      />
     </main>
     <footer class="grid grid-cols-3 gap-5 mt-5">
       <div
@@ -60,9 +94,11 @@
 <script setup lang="ts">
 import ArrowLeftBold from "vue-material-design-icons/ArrowLeftBold.vue";
 import { computed, defineEmits, defineProps, ref } from "vue";
-import XIcon from "@/components/XIcon.vue";
-import OIcon from "@/components/OIcon.vue";
+import XIcon from "@/components/icons/XIcon.vue";
+import OIcon from "@/components/icons/OIcon.vue";
 import Restart from "vue-material-design-icons/Restart.vue";
+import BoardBox from "./BoardBox.vue";
+import ModalView from "@/components/ModalView.vue";
 
 const props = defineProps<{
   playerOneMark: string;
@@ -102,6 +138,7 @@ const highlightedBoxes = ref([-1, -1, -1]);
   }
 })();
 
+// Funções do jogo - atualização do tabuleiro.
 async function updateBoard(index: number) {
   if (!isCpuPlaying.value) {
     board.value[index] = turn.value;
@@ -158,6 +195,8 @@ async function cpuTurn() {
         choices.push({ index: row[0], player: board.value[row[1]] });
       }
     }
+
+    isCpuPlaying.value = false;
 
     if (choices.length === 0) {
       const remainingBoxesIndex = board.value.reduce((acc, curr, index) => {
@@ -297,3 +336,10 @@ const whoIsO = computed(() => {
   }
 });
 </script>
+
+<style scoped>
+.class-restart {
+  text-align: -webkit-center;
+  box-shadow: inset 0px -4px 0px #6b8997;
+}
+</style>

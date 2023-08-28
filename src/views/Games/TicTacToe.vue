@@ -63,14 +63,19 @@
           New game (vs Player)
         </button>
       </div>
-      <GameBoard v-else @back="opponent = ''" />
+      <GameBoard
+        v-else
+        @back="opponent = ''"
+        :playerOneMark="mark"
+        :opponent="opponent"
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import XIcon from "@/components/XIcon.vue";
-import OIcon from "@/components/OIcon.vue";
+import XIcon from "@/components/icons/XIcon.vue";
+import OIcon from "@/components/icons/OIcon.vue";
 import GameBoard from "./GameBoard.vue";
 import { ref } from "vue";
 
