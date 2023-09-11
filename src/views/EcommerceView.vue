@@ -1,9 +1,9 @@
 <template>
   <div>
     <img src="@/assets/img/home-cart.png" alt="HomeCart" style="width: 100%" />
-    <div class="grid grid-cols-2 m-4 w-[70%] mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 m-4 md:w-[70%] mx-auto">
       <div
-        class="bg-gray-200 rounded-lg shadow-md p-4 m-2 grid grid-cols-5"
+        class="bg-gray-200 rounded-lg shadow-md p-4 m-2 grid md:grid-cols-5 grid-cols-1"
         v-for="product in items"
         :key="product"
       >

@@ -24,7 +24,9 @@
     aria-hidden="true"
     class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50"
   >
-    <div class="w-[60%] max-h-[32rem] mx-auto overflow-y-auto rounded-lg">
+    <div
+      class="w-full md:w-[60%] max-w-[95%] max-h-[32rem] mx-auto overflow-y-auto rounded-lg"
+    >
       <!-- Modal content -->
       <div class="relative bg-white shadow dark:bg-gray-700">
         <!-- Modal header -->
@@ -43,7 +45,7 @@
           </button>
         </div>
         <!-- Modal body -->
-        <div class="p-4 grid grid-cols-4">
+        <div class="p-4 grid grid-cols-1 md:grid-cols-4">
           <div class="col-span-3">
             <div
               v-for="product in cartStore.cartItems"
