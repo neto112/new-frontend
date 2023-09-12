@@ -62,6 +62,12 @@
         >
           New game (vs Player)
         </button>
+        <button
+          class="box-sky bg-sky-400 w-full rounded-2xl mt-4 p-[14px] hover:bg-[#7dd3fc] pb-[22px] md:p-[17px] md:pb-[25px]"
+          @click="opponent = 'friend'"
+        >
+          New game (vs Friend)
+        </button>
       </div>
       <GameBoard
         v-else

@@ -88,12 +88,13 @@
         <span class="font-bold text-xl md:text-2xl">{{ nbWinsO }}</span>
       </div>
     </footer>
+    <button @click="sendMessage('Hello World')">Send Message</button>
   </div>
 </template>
 
 <script setup lang="ts">
 import ArrowLeftBold from "vue-material-design-icons/ArrowLeftBold.vue";
-import { computed, defineEmits, defineProps, ref } from "vue";
+import { computed, defineEmits, defineProps, ref, onMounted } from "vue";
 import XIcon from "@/components/icons/XIcon.vue";
 import OIcon from "@/components/icons/OIcon.vue";
 import Restart from "vue-material-design-icons/Restart.vue";
@@ -131,6 +132,7 @@ const wannaRestart = ref(false);
 const isCpuPlaying = ref(false);
 const isModalOpen = ref(false);
 const highlightedBoxes = ref([-1, -1, -1]);
+const socket = new WebSocket("ws://localhost:3000");
 
 (async () => {
   if (props.opponent === "cpu" && props.playerOneMark !== turn.value) {
@@ -138,7 +140,20 @@ const highlightedBoxes = ref([-1, -1, -1]);
   }
 })();
 
-// Funções do jogo - atualização do tabuleiro.
+socket.onmessage = (event) => {
+  const message = JSON.parse(event.data);
+  if (message.type === "move" && !hasWon.value && !hasTied.value) {
+    const { index, player } = message.data;
+    if (board.value[index] === "") {
+      board.value[index] = player;
+      checkIfWin();
+      if (!hasWon.value && !hasTied.value) {
+        turn.value = turn.value === "X" ? "O" : "X";
+      }
+    }
+  }
+};
+
 async function updateBoard(index: number) {
   if (!isCpuPlaying.value) {
     board.value[index] = turn.value;
@@ -146,6 +161,10 @@ async function updateBoard(index: number) {
     if (!hasWon.value && !hasTied.value) {
       checkIfRemainingBoxes();
       changeTurn();
+      if (props.opponent === "friend") {
+        const moveData = { type: "move", data: { index, player: turn.value } };
+        socket.send(JSON.stringify(moveData));
+      }
       await cpuTurn();
     }
   }
