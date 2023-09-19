@@ -19,12 +19,18 @@
   </svg>
 </template>
 
-<script>
-export default {
-  props: { wrongCount: { type: Number, default: 0 } },
-  setup(props) {
-    const lte = (num) => props.wrongCount >= num;
-    return { lte };
-  },
-};
+<script setup lang="ts">
+import { defineProps } from "vue";
+
+const props = defineProps({ wrongCount: { type: Number, default: 0 } });
+const lte = (num: number) => props.wrongCount >= num;
 </script>
+
+<style scoped>
+.figure-container {
+  fill: transparent;
+  stroke: #000;
+  stroke-width: 4px;
+  stroke-linecap: round;
+}
+</style>
