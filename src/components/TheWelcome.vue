@@ -1,121 +1,175 @@
-<script setup lang="ts">
-import WelcomeItem from "./WelcomeItem.vue";
-import DocumentationIcon from "./icons/IconDocumentation.vue";
-import ToolingIcon from "./icons/IconTooling.vue";
-import EcosystemIcon from "./icons/IconEcosystem.vue";
-import CommunityIcon from "./icons/IconCommunity.vue";
-import SupportIcon from "./icons/IconSupport.vue";
-</script>
-
 <template>
   <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
+    <div>
+      <button @click="changeLanguage">
+        <span v-if="i18n.global.locale === 'en'">🇺🇸</span>
+        <span v-else>🇧🇷</span>
+        {{ i18n.global.locale }}
+      </button>
+    </div>
+  </WelcomeItem>
+  <WelcomeItem>
+    <template #heading>
+      <div class="name-heading">
+        {{ $t("welcome") }} Cristiano Rasweiler Neto
+      </div>
     </template>
-    <template #heading>Documentation</template>
-
-    Vue’s
-    <a href="https://vuejs.org/" target="_blank" rel="noopener"
-      >official documentation</a
-    >
-    provides you with all information you need to get started.
+    <div class="social-links">
+      <a href="https://github.com/neto112" target="_blank" title="Github">
+        <IconGithub />
+      </a>
+      <a
+        href="https://www.linkedin.com/in/cristianorneto/"
+        target="_blank"
+        title="LinkedIn"
+      >
+        <IconLinkedin />
+      </a>
+      <a
+        href="https://www.instagram.com/cristianorneto_/"
+        target="_blank"
+        title="Instagram"
+      >
+        <IconInstagram />
+      </a>
+    </div>
   </WelcomeItem>
 
   <WelcomeItem>
-    <template #icon>
-      <ToolingIcon />
+    <template #heading>
+      <div class="profile-heading">Profile</div>
+      <div class="job-title">{{ $t("frontendDeveloper") }}</div>
+      <div class="intro">
+        {{ $t("hello", { age: myAge }) }}
+      </div>
+      <div class="stack-heading">{{ $t("stack") }}</div>
+      <div class="skills">
+        <div class="chip" v-for="(skill, idx) in skills" :key="idx">
+          {{ skill.name }}
+        </div>
+      </div>
     </template>
-    <template #heading>Tooling</template>
-
-    This project is served and bundled with
-    <a
-      href="https://vitejs.dev/guide/features.html"
-      target="_blank"
-      rel="noopener"
-      >Vite</a
-    >. The recommended IDE setup is
-    <a href="https://code.visualstudio.com/" target="_blank" rel="noopener"
-      >VSCode</a
-    >
-    +
-    <a
-      href="https://github.com/johnsoncodehk/volar"
-      target="_blank"
-      rel="noopener"
-      >Volar</a
-    >. If you need to test your components and web pages, check out
-    <a href="https://www.cypress.io/" target="_blank" rel="noopener">Cypress</a>
-    and
-    <a href="https://on.cypress.io/component" target="_blank"
-      >Cypress Component Testing</a
-    >.
-
-    <br />
-
-    More instructions are available in <code>README.md</code>.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <EcosystemIcon />
-    </template>
-    <template #heading>Ecosystem</template>
-
-    Get official tools and libraries for your project:
-    <a href="https://pinia.vuejs.org/" target="_blank" rel="noopener">Pinia</a>,
-    <a href="https://router.vuejs.org/" target="_blank" rel="noopener"
-      >Vue Router</a
-    >,
-    <a href="https://test-utils.vuejs.org/" target="_blank" rel="noopener"
-      >Vue Test Utils</a
-    >, and
-    <a href="https://github.com/vuejs/devtools" target="_blank" rel="noopener"
-      >Vue Dev Tools</a
-    >. If you need more resources, we suggest paying
-    <a
-      href="https://github.com/vuejs/awesome-vue"
-      target="_blank"
-      rel="noopener"
-      >Awesome Vue</a
-    >
-    a visit.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <CommunityIcon />
-    </template>
-    <template #heading>Community</template>
-
-    Got stuck? Ask your question on
-    <a href="https://chat.vuejs.org" target="_blank" rel="noopener">Vue Land</a
-    >, our official Discord server, or
-    <a
-      href="https://stackoverflow.com/questions/tagged/vue.js"
-      target="_blank"
-      rel="noopener"
-      >StackOverflow</a
-    >. You should also subscribe to
-    <a href="https://news.vuejs.org" target="_blank" rel="noopener"
-      >our mailing list</a
-    >
-    and follow the official
-    <a href="https://twitter.com/vuejs" target="_blank" rel="noopener"
-      >@vuejs</a
-    >
-    twitter account for latest news in the Vue world.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <SupportIcon />
-    </template>
-    <template #heading>Support Vue</template>
-
-    As an independent project, Vue relies on community backing for its
-    sustainability. You can help us by
-    <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener"
-      >becoming a sponsor</a
-    >.
   </WelcomeItem>
 </template>
+
+<script setup lang="ts">
+import WelcomeItem from "./WelcomeItem.vue";
+import IconGithub from "./icons/IconGithub.vue";
+import IconLinkedin from "./icons/IconLinkedin.vue";
+import IconInstagram from "./icons/IconInstagram.vue";
+import { differenceInYears } from "date-fns";
+import { computed, ref } from "vue";
+import i18n from "@/languages";
+
+const skills = ref([
+  { name: "VueJS" },
+  { name: "Vuetify" },
+  { name: "React" },
+  { name: "Python" },
+  { name: "Javascript" },
+  { name: "Typescript" },
+  { name: "REST API" },
+  { name: "Tailwind CSS" },
+  { name: "DBeaver" },
+]);
+
+const dateOfBirth = ref("1995-03-25");
+
+const myAge = computed(() => {
+  const today = new Date();
+  return differenceInYears(today, new Date(dateOfBirth.value));
+});
+
+const changeLanguage = () => {
+  const newLocale = i18n.global.locale === "en" ? "pt" : "en";
+  i18n.global.locale = newLocale;
+};
+</script>
+
+<style scoped>
+button {
+  display: flex;
+  align-items: center;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button span {
+  margin-right: 8px;
+}
+
+.name-heading {
+  font-size: 40px;
+}
+
+.social-links {
+  display: flex;
+  margin-top: 20px;
+}
+
+a {
+  margin-right: 10px;
+  position: relative;
+  display: inline-block;
+}
+
+a:hover::before {
+  content: attr(title);
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  white-space: nowrap;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+a:hover::before {
+  opacity: 1;
+}
+
+.profile-heading {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.job-title {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.intro {
+  margin-top: 10px;
+}
+
+.stack-heading {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.chip {
+  display: inline-block;
+  padding: 0.5em 1em;
+  margin: 0.5em;
+  background-color: #2196f3;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+</style>

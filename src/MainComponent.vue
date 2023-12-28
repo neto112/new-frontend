@@ -13,7 +13,7 @@
             </button>
           </li>
           <li>
-            <div class="flex-1 px-4">Seja bem vindo</div>
+            <div class="flex-1 px-4">Welcome</div>
           </li>
         </ul>
         <ul class="flex space-x-2 items-center">
