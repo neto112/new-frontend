@@ -11,7 +11,7 @@
       </div>
     </div>
     <WordView :letters="letters" :correct-letters="correctLetters" />
-    <PopupView :status="status" @reset="reset" />
+    <PopupView :status="status" :word="word" @reset="reset" />
     <div
       class="bg-opacity-30 lg:p-3 text-center transition-transform transform translate-y-[-50px]"
     >
