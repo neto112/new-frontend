@@ -94,22 +94,22 @@
                 <a
                   href="/games/tictactoe"
                   class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >TicTacToe</a
-                >
+                  >TicTacToe
+                </a>
               </li>
-              <li>
+              <!-- <li>
                 <a
-                  href="#"
+                  href="/games/quiz"
                   class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >Domino</a
-                >
-              </li>
+                  >Quiz
+                </a>
+              </li> -->
               <li>
                 <a
                   href="/games/hangman"
                   class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >Hangman</a
-                >
+                  >Hangman
+                </a>
               </li>
             </ul>
           </li>
@@ -137,22 +137,22 @@
                 <a
                   href="/ecommerce"
                   class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >Products</a
-                >
+                  >Products
+                </a>
               </li>
               <li>
                 <a
                   href="#"
                   class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >Billing</a
-                >
+                  >Billing
+                </a>
               </li>
               <li>
                 <a
                   href="#"
                   class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >Invoice</a
-                >
+                  >Invoice
+                </a>
               </li>
             </ul>
           </li>
@@ -184,7 +184,6 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-// import useComp from "./useComp";
 import ViewDashboard from "vue-material-design-icons/ViewDashboard.vue";
 import Controller from "vue-material-design-icons/Controller.vue";
 import Cart from "vue-material-design-icons/Cart.vue";
