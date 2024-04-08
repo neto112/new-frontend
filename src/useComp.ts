@@ -1,13 +1,6 @@
 import { format } from "date-fns";
-import { ref } from 'vue'
 
 export default function useComposable() {
-  const reuseData = ref("Reusable data")
-  function reuseMethod() {
-    console.log(reuseData.value);
-    console.log('Hello from Reusable method!');
-  }
-
   function formatTime(value: string | number | Date) {
     if (value) {
       const value2 = new Date(value);
@@ -35,5 +28,5 @@ export default function useComposable() {
     }
   }
 
-  return { reuseData, reuseMethod, formatTime, formatPriceValue }
+  return { formatTime, formatPriceValue };
 }

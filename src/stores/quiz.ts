@@ -31,7 +31,6 @@ export const useQuizStore = defineStore({
           index++;
           return question;
         });
-        console.log("error", this.quiz);
       } catch (error) {
         alert(error);
         console.error("Error fetching quiz:", error);

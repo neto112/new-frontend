@@ -6,6 +6,7 @@ export interface IQuiz {
   question: string;
   type: string;
   answers: string[];
-  rightAnswer: string | null;
+  answer: string;
+  rightAnswer: boolean | null;
   key: number;
 }
