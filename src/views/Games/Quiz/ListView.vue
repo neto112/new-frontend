@@ -1,7 +1,8 @@
 <template>
   <div v-if="getQuiz.length > 0 && showQuiz" class="p-4 mx-auto md:w-1/2">
     <h2 class="text-2xl font-semibold mb-4">
-      Question {{ currentQuestion.key + 1 }}: {{ currentQuestion.question }}
+      Question {{ currentQuestion.key + 1 }}/{{ getQuiz.length }}:
+      {{ currentQuestion.question }}
     </h2>
     <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-4">
       <button
