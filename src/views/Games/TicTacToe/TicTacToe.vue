@@ -62,12 +62,12 @@
         >
           New game (vs Player)
         </button>
-        <button
+        <!-- <button
           class="box-sky bg-sky-400 w-full rounded-2xl mt-4 p-[14px] hover:bg-[#7dd3fc] pb-[22px] md:p-[17px] md:pb-[25px]"
           @click="opponent = 'friend'"
         >
           New game (vs Friend)
-        </button>
+        </button> -->
       </div>
       <GameBoard
         v-else
@@ -80,10 +80,10 @@
 </template>
 
 <script setup lang="ts">
-import XIcon from "@/components/icons/XIcon.vue";
 import OIcon from "@/components/icons/OIcon.vue";
-import GameBoard from "./GameBoard.vue";
+import XIcon from "@/components/icons/XIcon.vue";
 import { ref } from "vue";
+import GameBoard from "./GameBoard.vue";
 
 const opponent = ref("");
 const mark = ref("O");

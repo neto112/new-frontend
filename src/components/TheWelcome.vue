@@ -1,17 +1,8 @@
 <template>
   <WelcomeItem>
-    <div>
-      <button @click="changeLanguage">
-        <span v-if="i18n.global.locale === 'en'">🇺🇸</span>
-        <span v-else>🇧🇷</span>
-        {{ i18n.global.locale }}
-      </button>
-    </div>
-  </WelcomeItem>
-  <WelcomeItem>
     <template #heading>
       <div class="name-heading">
-        {{ $t("welcome") }} Cristiano Rasweiler Neto
+        {{ $t("dashboard.welcome") }} Cristiano Rasweiler Neto
       </div>
     </template>
     <div class="social-links">
@@ -38,11 +29,11 @@
   <WelcomeItem>
     <template #heading>
       <div class="profile-heading">Profile</div>
-      <div class="job-title">{{ $t("frontendDeveloper") }}</div>
+      <div class="job-title">{{ $t("dashboard.frontendDeveloper") }}</div>
       <div class="intro">
-        {{ $t("hello", { age: myAge }) }}
+        {{ $t("dashboard.hello", { age: myAge }) }}
       </div>
-      <div class="stack-heading">{{ $t("stack") }}</div>
+      <div class="stack-heading">{{ $t("dashboard.stack") }}</div>
       <div class="skills">
         <div class="chip" v-for="(skill, idx) in skills" :key="idx">
           {{ skill.name }}
@@ -53,13 +44,12 @@
 </template>
 
 <script setup lang="ts">
-import WelcomeItem from "./WelcomeItem.vue";
-import IconGithub from "./icons/IconGithub.vue";
-import IconLinkedin from "./icons/IconLinkedin.vue";
-import IconInstagram from "./icons/IconInstagram.vue";
 import { differenceInYears } from "date-fns";
 import { computed, ref } from "vue";
-import i18n from "@/languages";
+import WelcomeItem from "./WelcomeItem.vue";
+import IconGithub from "./icons/IconGithub.vue";
+import IconInstagram from "./icons/IconInstagram.vue";
+import IconLinkedin from "./icons/IconLinkedin.vue";
 
 const skills = ref([
   { name: "VueJS" },
@@ -79,11 +69,6 @@ const myAge = computed(() => {
   const today = new Date();
   return differenceInYears(today, new Date(dateOfBirth.value));
 });
-
-const changeLanguage = () => {
-  const newLocale = i18n.global.locale === "en" ? "pt" : "en";
-  i18n.global.locale = newLocale;
-};
 </script>
 
 <style scoped>

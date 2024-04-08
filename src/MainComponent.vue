@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- drawer init and show -->
-    <header class="bg-white shadow-md p-2">
+    <header class="bg-white shadow-md p-2 fixed w-full">
       <div class="items-center justify-between flex">
         <ul class="flex items-center">
           <li>
@@ -17,6 +17,34 @@
           </li>
         </ul>
         <ul class="flex space-x-2 items-center">
+          <li class="relative">
+            <div>
+              <button
+                @click="toggleLanguage"
+                class="relative inline-flex items-center px-2.5 py-1 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                <Translate class="mr-2" />
+                <span v-if="i18n.global.locale === 'en-US'">🇺🇸</span>
+                <span v-else-if="i18n.global.locale === 'pt-BR'">🇧🇷</span>
+                <span v-else>🇪🇸</span>
+              </button>
+            </div>
+
+            <ul
+              v-show="showLanguageMenu"
+              class="absolute z-10 top-full left-0 mt-2 bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg"
+            >
+              <li v-for="language in languages" :key="language.code">
+                <button
+                  @click="changeLanguage(language.code)"
+                  class="flex items-center w-full px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100"
+                >
+                  <span class="mr-2">{{ language.flag }}</span>
+                  <span>{{ language.name }}</span>
+                </button>
+              </li>
+            </ul>
+          </li>
           <li>
             <ProductDescriptionDrawer />
           </li>
@@ -140,7 +168,7 @@
                   >Products
                 </a>
               </li>
-              <li>
+              <!-- <li>
                 <a
                   href="#"
                   class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
@@ -153,7 +181,7 @@
                   class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >Invoice
                 </a>
-              </li>
+              </li> -->
             </ul>
           </li>
           <li>
@@ -183,19 +211,27 @@
 </template>
 
 <script setup lang="ts">
+import i18n from "@/locales";
 import { ref } from "vue";
-import ViewDashboard from "vue-material-design-icons/ViewDashboard.vue";
-import Controller from "vue-material-design-icons/Controller.vue";
 import Cart from "vue-material-design-icons/Cart.vue";
 import ChevronDown from "vue-material-design-icons/ChevronDown.vue";
+import Controller from "vue-material-design-icons/Controller.vue";
 import Login from "vue-material-design-icons/Login.vue";
 import Logout from "vue-material-design-icons/Logout.vue";
 import Menu from "vue-material-design-icons/Menu.vue";
+import Translate from "vue-material-design-icons/Translate.vue";
+import ViewDashboard from "vue-material-design-icons/ViewDashboard.vue";
 import ProductDescriptionDrawer from "./components/cart/ProductDescriptionDrawer.vue";
 
 const showNagivation = ref(false);
 const showEcommerce = ref(false);
 const showGames = ref(false);
+const showLanguageMenu = ref(false);
+const languages = ref([
+  { code: "en-EN", flag: "🇺🇸", name: "English" },
+  { code: "pt-BR", flag: "🇧🇷", name: "Português" },
+  { code: "es-ES", flag: "🇪🇸", name: "Spain" },
+]);
 
 const toggleNavigation = () => {
   showNagivation.value = !showNagivation.value;
@@ -207,6 +243,14 @@ const toggleEcommerce = () => {
 
 const toggleGames = () => {
   showGames.value = !showGames.value;
+};
+
+const changeLanguage = (code: string) => {
+  i18n.global.locale = code;
+};
+
+const toggleLanguage = () => {
+  showLanguageMenu.value = !showLanguageMenu.value;
 };
 </script>
 
