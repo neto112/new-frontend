@@ -93,13 +93,13 @@
 </template>
 
 <script setup lang="ts">
-import ArrowLeftBold from "vue-material-design-icons/ArrowLeftBold.vue";
-import { computed, defineEmits, defineProps, ref, onMounted } from "vue";
-import XIcon from "@/components/icons/XIcon.vue";
+import ModalView from "@/components/ModalView.vue";
 import OIcon from "@/components/icons/OIcon.vue";
+import XIcon from "@/components/icons/XIcon.vue";
+import { computed, defineEmits, defineProps, ref } from "vue";
+import ArrowLeftBold from "vue-material-design-icons/ArrowLeftBold.vue";
 import Restart from "vue-material-design-icons/Restart.vue";
 import BoardBox from "./BoardBox.vue";
-import ModalView from "@/components/ModalView.vue";
 
 const props = defineProps<{
   playerOneMark: string;

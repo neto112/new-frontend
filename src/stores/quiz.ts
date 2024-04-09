@@ -36,6 +36,5 @@ export const useQuizStore = defineStore({
         console.error("Error fetching quiz:", error);
       }
     },
-    persist: true,
   },
 });
