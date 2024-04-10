@@ -91,12 +91,12 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { useCartStore } from "../../stores/cart";
 import Cart from "vue-material-design-icons/Cart.vue";
 import CartOutline from "vue-material-design-icons/CartOutline.vue";
 import Close from "vue-material-design-icons/Close.vue";
 import TrashCan from "vue-material-design-icons/TrashCan.vue";
-import { Product } from "../../interface/Product";
+import { IProduct } from "../../interface/Product";
+import { useCartStore } from "../../stores/cart";
 
 const showCart = ref(false);
 
@@ -105,7 +105,7 @@ const totalItems = computed(() => {
   return cartStore.cartItems.reduce((total, item) => total + item.quantity, 0);
 });
 
-const removeAllQuantityFromCart = (product: Product) => {
+const removeAllQuantityFromCart = (product: IProduct) => {
   return cartStore.removeAllQuantityFromCart(product);
 };
 

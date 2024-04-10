@@ -66,7 +66,6 @@
 <script lang="ts" setup>
 import IconCancel from "@/components/icons/IconCancel.vue";
 import IconCheck from "@/components/icons/IconCheck.vue";
-import { IQuiz } from "@/interface/Quiz";
 import { useQuizStore } from "@/stores/quiz";
 import { computed, onMounted, ref } from "vue";
 
@@ -74,7 +73,7 @@ const quizStore = useQuizStore();
 const currentQuestionIndex = ref(0);
 const showQuiz = ref(true);
 const showModal = ref(false);
-const selectedAnswer = ref<IQuiz | null>(null);
+const selectedAnswer = ref<null | string>(null);
 
 const getQuiz = computed(() => quizStore.quiz);
 
@@ -82,7 +81,7 @@ const currentQuestion = computed(
   () => getQuiz.value[currentQuestionIndex.value]
 );
 
-const checkAnswer = (answer: IQuiz) => {
+const checkAnswer = (answer: string) => {
   selectedAnswer.value = answer;
   currentQuestion.value.rightAnswer =
     currentQuestion.value.correct_answer === answer;

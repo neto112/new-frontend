@@ -2,8 +2,8 @@
   <div>
     <div v-if="isOpen" class="fixed inset-0 flex bg-[rgba(0,0,0,0.5)]">
       <div
-        :style="{ height: dialogHeight }"
-        class="absolute top-1/2 -translate-y-1/2 bg-semi-dark-navy w-full text-center flex flex-col justify-center gap-4"
+        :style="{ height: dialogHeight, width: dialogWidth }"
+        class="bg-semi-dark-navy m-auto text-center flex flex-col justify-center gap-4"
       >
         <!-- Modal content -->
         <div class="p-8 relative bg-white shadow dark:bg-gray-700">
@@ -25,14 +25,14 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { defineProps, toRefs } from "vue";
 
-defineProps<{
-  isOpen: boolean;
-  title: string;
-  dialogHeight: {
-    type: string;
-    default: "580px"; // Altura padrão, você pode ajustar conforme necessário
-  };
-}>();
+const props = defineProps({
+  isOpen: { type: Boolean, default: false },
+  title: { type: String, default: "" },
+  dialogHeight: { type: String, default: "auto" }, // Padrão para altura
+  dialogWidth: { type: String, default: "auto" }, // Padrão para largura
+});
+
+const { isOpen, title, dialogHeight, dialogWidth } = toRefs(props);
 </script>

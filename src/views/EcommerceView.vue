@@ -5,7 +5,7 @@
       <div
         class="bg-gray-200 rounded-lg shadow-md p-4 m-2 grid md:grid-cols-5 grid-cols-1"
         v-for="product in items"
-        :key="product"
+        :key="product.id"
       >
         <div class="col-span-4">
           <h3 class="text-xl font-semibold">{{ product.name }}</h3>
@@ -33,24 +33,23 @@
 </template>
 
 <script setup lang="ts">
-import items from "../data/cart";
-import { Product } from "../interface/Product";
-import ProductDescriptionDrawer from "../components/products/ProductDescriptionDrawer.vue";
 import { useCartStore } from "@/stores/cart";
 import MinusCircle from "vue-material-design-icons/MinusCircle.vue";
 import PlusCircle from "vue-material-design-icons/PlusCircle.vue";
+import items from "../data/cart";
+import { IProduct } from "../interface/Product";
 
 const cartStore = useCartStore();
 
-const addToCart = (product: Product) => {
+const addToCart = (product: IProduct) => {
   return cartStore.addToCart(product);
 };
 
-const removeFromCart = (product: Product) => {
+const removeFromCart = (product: IProduct) => {
   return cartStore.removeFromCart(product);
 };
 
-const productTotal = (product: Product) => {
+const productTotal = (product: IProduct) => {
   const item = cartStore.productQuantity(product);
   if (!item) {
     return 0;
@@ -58,6 +57,3 @@ const productTotal = (product: Product) => {
   return item;
 };
 </script>
-
-<style scoped>
-</style>

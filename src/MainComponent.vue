@@ -246,16 +246,10 @@ const toggleGames = () => {
 };
 
 const changeLanguage = (code: string) => {
-  i18n.global.locale = code;
+  i18n.global.locale = code as "pt-BR" | "es-ES" | "en-US";
 };
 
 const toggleLanguage = () => {
   showLanguageMenu.value = !showLanguageMenu.value;
 };
 </script>
-
-<style scoped>
-.selected-icon {
-  background: red;
-}
-</style>

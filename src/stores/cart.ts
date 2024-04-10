@@ -1,13 +1,13 @@
-import { defineStore } from 'pinia'
-import { Product } from "../interface/Product"
+import { defineStore } from "pinia";
+import { IProduct } from "../interface/Product";
 
 export const useCartStore = defineStore({
-  id: 'cart',
+  id: "cart",
   state: () => ({
-    cart: [] as Product[],
+    cart: [] as IProduct[],
   }),
   getters: {
-    productQuantity: (state) => (product: Product) => {
+    productQuantity: (state) => (product: IProduct) => {
       const item = state.cart.find((i) => i.id === product.id);
 
       if (item) {
@@ -17,40 +17,46 @@ export const useCartStore = defineStore({
       }
     },
     cartItems: (state) => {
-      return state.cart
+      return state.cart;
     },
     cartTotal: (state) => {
       return state.cart.reduce((a, b) => a + b.price * b.quantity, 0);
-    }
+    },
   },
   actions: {
-    addToCart(product: Product) {
-      const item = this.cart.find((i) => i.id === product.id)
+    addToCart(product: IProduct) {
+      console.log("add", product);
+
+      const item = this.cart.find((i) => i.id === product.id);
 
       if (item) {
         item.quantity++;
       } else {
-        this.cart.push({ ...product, quantity: 1 })
+        this.cart.push({ ...product, quantity: 1 });
       }
     },
 
-    removeFromCart(product: Product) {
-      const item = this.cart.find((i) => i.id === product.id)
+    removeFromCart(product: IProduct) {
+      console.log("rem", product);
+
+      const item = this.cart.find((i) => i.id === product.id);
 
       if (item) {
         if (item.quantity > 1) {
-          item.quantity--
+          item.quantity--;
         } else {
-          this.cart = this.cart.filter((i) => i.id !== product.id)
+          this.cart = this.cart.filter((i) => i.id !== product.id);
         }
       }
     },
-    removeAllQuantityFromCart(product: Product) {
-      const item = this.cart.find((i) => i.id === product.id)
+    removeAllQuantityFromCart(product: IProduct) {
+      console.log("add", product);
+
+      const item = this.cart.find((i) => i.id === product.id);
       if (item) {
-        this.cart = this.cart.filter((i) => i.id !== product.id)
+        this.cart = this.cart.filter((i) => i.id !== product.id);
       }
-    }
+    },
   },
-  persist: true
-})
+  persist: true,
+});

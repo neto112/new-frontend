@@ -88,7 +88,6 @@
         <span class="font-bold text-xl md:text-2xl">{{ nbWinsO }}</span>
       </div>
     </footer>
-    <button @click="sendMessage('Hello World')">Send Message</button>
   </div>
 </template>
 
