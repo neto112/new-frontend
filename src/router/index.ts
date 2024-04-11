@@ -1,41 +1,43 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import RouterComponent from '../components/RouterComponent.vue'
-import MainComponent from '../MainComponent.vue'
-import DashboardView from '../views/DashboardView.vue'
-import EcommerceView from '../views/EcommerceView.vue'
-import TicTacToe from '../views/Games/TicTacToe/TicTacToe.vue'
-import HangmanView from '../views/Games/Hangman/HangmanView.vue'
-import ListView from '../views/Games/Quiz/ListView.vue'
+import { createRouter, createWebHistory } from "vue-router";
+import MainComponent from "../MainComponent.vue";
+import RouterComponent from "../components/RouterComponent.vue";
+import DashboardView from "../views/DashboardView.vue";
+import EcommerceView from "../views/EcommerceView.vue";
+import HangmanView from "../views/Games/Hangman/HangmanView.vue";
+import PegSolitaire from "../views/Games/PegSolitaire/PegSolitaire.vue";
+import ListView from "../views/Games/Quiz/ListView.vue";
+import TicTacToe from "../views/Games/TicTacToe/TicTacToe.vue";
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: "/",
       component: MainComponent,
       children: [
-        { path: 'dashboard', component: DashboardView },
-        { path: 'ecommerce', component: EcommerceView },
+        { path: "dashboard", component: DashboardView },
+        { path: "ecommerce", component: EcommerceView },
         {
-          path: 'games',
+          path: "games",
           component: RouterComponent,
           children: [
-            { path: 'quiz', component: ListView },
-            { path: 'tictactoe', component: TicTacToe },
-            { path: 'hangman', component: HangmanView },
-          ]
+            { path: "quiz", component: ListView },
+            { path: "tictactoe", component: TicTacToe },
+            { path: "hangman", component: HangmanView },
+            { path: "peg-solitaire", component: PegSolitaire },
+          ],
         },
-      ]
+      ],
     },
-  ]
-})
+  ],
+});
 
 router.beforeEach((to, _from, next) => {
   if (to.path === "/") {
-    next("/dashboard")
+    next("/dashboard");
   } else {
     next();
   }
-})
+});
 
-export default router
+export default router;
