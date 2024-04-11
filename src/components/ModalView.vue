@@ -6,11 +6,20 @@
         class="bg-semi-dark-navy m-auto text-center flex flex-col justify-center gap-4"
       >
         <!-- Modal content -->
-        <div class="p-8 relative bg-white shadow dark:bg-gray-700">
+        <div class="mx-2 p-8 relative bg-white shadow dark:bg-gray-700">
           <!-- Modal header -->
-          <h3 v-if="title" class="uppercase font-bold text-sm md:text-base">
-            {{ title }}
-          </h3>
+          <div class="flex justify-between items-center">
+            <h3 v-if="title" class="uppercase font-bold text-sm md:text-base">
+              {{ title }}
+            </h3>
+            <button
+              v-if="isClose"
+              @click="resetModal"
+              class="bg-white text-blue-500 rounded-lg p-2 text-lg font-semibold hover:bg-blue-200 focus:outline-none focus:ring focus:ring-blue-300"
+            >
+              <Close />
+            </button>
+          </div>
           <!-- Modal body -->
           <div class="text-2xl md:text-[40px] uppercase font-bold">
             <slot name="description"></slot>
@@ -25,14 +34,19 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, toRefs } from "vue";
+import { defineEmits, defineProps, toRefs } from "vue";
+import Close from "vue-material-design-icons/Close.vue";
 
 const props = defineProps({
   isOpen: { type: Boolean, default: false },
   title: { type: String, default: "" },
-  dialogHeight: { type: String, default: "auto" }, // Padrão para altura
-  dialogWidth: { type: String, default: "auto" }, // Padrão para largura
+  dialogHeight: { type: String, default: "auto" }, // Default for height
+  dialogWidth: { type: String, default: "auto" }, // Default for width
+  isClose: { type: Boolean, default: false },
 });
 
 const { isOpen, title, dialogHeight, dialogWidth } = toRefs(props);
+
+const emits = defineEmits(["close"]);
+const resetModal = () => emits("close");
 </script>

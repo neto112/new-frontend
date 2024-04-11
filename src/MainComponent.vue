@@ -254,6 +254,7 @@ const toggleGames = () => {
 
 const changeLanguage = (code: string) => {
   i18n.global.locale = code as "pt-BR" | "es-ES" | "en-US";
+  showLanguageMenu.value = false;
 };
 
 const toggleLanguage = () => {

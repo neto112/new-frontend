@@ -1,37 +1,82 @@
 <template>
-  <div>
-    <h1>Jogo Resta Um</h1>
-    <div>
-      <div v-for="(row, rowIndex) in board" :key="rowIndex" class="row">
+  <div class="p-4 mx-auto md:w-1/2 text-center">
+    <div class="flex items-center justify-center">
+      <h1 class="text-3xl font-bold mr-4">Game Peg Solitaire</h1>
+      <Information
+        @click="showInstructions"
+        class="animate-bounce cursor-pointer"
+      />
+    </div>
+    <div class="text-left mb-4">
+      <!-- Modal de instruções -->
+      <ModalView
+        isClose
+        :isOpen="showModal"
+        @close="showModal = false"
+        dialogHeight="auto"
+        dialogWidth="auto"
+        :title="$t('pegSolitaire.title')"
+      >
+        <div class="text-left">
+          <p class="mb-4">{{ $t("pegSolitaire.text1") }}</p>
+          <p class="mb-4">
+            {{ $t("pegSolitaire.text2") }}
+          </p>
+          <p class="mb-4">
+            {{ $t("pegSolitaire.text3") }}
+          </p>
+        </div>
+      </ModalView>
+    </div>
+    <div class="justify-center">
+      <div
+        v-for="(row, rowIndex) in board"
+        :key="rowIndex"
+        class="flex md:w-1/2 mx-auto justify-center"
+      >
         <button
           v-for="(cell, colIndex) in row"
           :key="colIndex"
           @click="handleCellClick(rowIndex, colIndex)"
           :disabled="cell === ''"
+          class="h-12 w-12"
           :class="[
-            {
-              selected:
-                cell !== '' &&
-                cell === 1 &&
-                selectedCell &&
-                selectedCell.row === rowIndex &&
-                selectedCell.col === colIndex,
-            },
-            cell !== '' ? 'cell' : 'noCell',
+            cell !== '' ? 'bg-blue-200 border-2' : '',
+            cell === 1 &&
+            selectedCell &&
+            selectedCell.row === rowIndex &&
+            selectedCell.col === colIndex
+              ? 'bg-yellow-300'
+              : '',
           ]"
         >
-          {{ cell }}
+          <div
+            v-if="cell === 1"
+            class="h-1/2 w-1/2 m-auto rounded-full bg-black"
+          ></div>
         </button>
       </div>
     </div>
-    <div v-if="gameWinner">Congratulations, you win!</div>
-    <div v-else-if="gameOver">Game over, play again?</div>
-    <button v-if="gameWinner || gameOver" @click="restartGame">Restart</button>
+    <div class="text-green-500 font-semibold mt-4" v-if="gameWinner">
+      Congratulations, you win!
+    </div>
+    <div class="text-red-500 font-semibold mt-4" v-else-if="gameOver">
+      Game over, play again?
+    </div>
+    <button
+      class="mt-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded"
+      v-if="gameWinner || gameOver"
+      @click="restartGame"
+    >
+      Restart
+    </button>
   </div>
 </template>
 
 <script setup lang="ts">
+import ModalView from "@/components/ModalView.vue";
 import { ref } from "vue";
+import Information from "vue-material-design-icons/Information.vue";
 
 const board = ref([
   ["", "", 1, 1, 1, "", ""],
@@ -46,6 +91,11 @@ const board = ref([
 const selectedCell = ref(null);
 const gameWinner = ref(false);
 const gameOver = ref(false);
+const showModal = ref(false);
+
+const showInstructions = () => {
+  showModal.value = true;
+};
 
 const handleCellClick = (row: number, col: number) => {
   if (selectedCell.value) {
@@ -138,31 +188,19 @@ const restartGame = () => {
 </script>
 
 <style scoped>
-.row {
-  display: flex;
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
 }
 
-.cell,
-.selected {
-  width: 30px;
-  height: 30px;
-  border: 1px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.cell {
-  background-color: lightblue; /* Cor de fundo para células com '1' */
-}
-
-.selected {
-  background-color: yellow; /* Cor de fundo para células selecionadas */
-}
-
-.noCell {
-  width: 30px;
-  height: 30px;
+.animate-bounce {
+  animation: bounce 1s infinite;
 }
 </style>
