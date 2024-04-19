@@ -235,7 +235,7 @@ const showEcommerce = ref(false);
 const showGames = ref(false);
 const showLanguageMenu = ref(false);
 const languages = ref([
-  { code: "en-EN", flag: "🇺🇸", name: "English" },
+  { code: "en-US", flag: "🇺🇸", name: "English" },
   { code: "pt-BR", flag: "🇧🇷", name: "Português" },
   { code: "es-ES", flag: "🇪🇸", name: "Spain" },
 ]);

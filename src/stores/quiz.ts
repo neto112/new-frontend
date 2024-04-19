@@ -1,5 +1,5 @@
 import { api } from "@/api";
-import { IQuiz } from "@/interface/Quiz";
+import type { IQuiz } from "@/interface/Quiz";
 import { defineStore } from "pinia";
 
 export const useQuizStore = defineStore({

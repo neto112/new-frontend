@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { IProduct } from "../interface/Product";
+import type { IProduct } from "../interface/Product";
 
 export const useCartStore = defineStore({
   id: "cart",

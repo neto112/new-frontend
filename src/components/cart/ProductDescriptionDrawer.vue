@@ -95,7 +95,7 @@ import Cart from "vue-material-design-icons/Cart.vue";
 import CartOutline from "vue-material-design-icons/CartOutline.vue";
 import Close from "vue-material-design-icons/Close.vue";
 import TrashCan from "vue-material-design-icons/TrashCan.vue";
-import { IProduct } from "../../interface/Product";
+import { type IProduct } from "../../interface/Product";
 import { useCartStore } from "../../stores/cart";
 
 const showCart = ref(false);

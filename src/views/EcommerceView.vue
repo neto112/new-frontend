@@ -33,11 +33,11 @@
 </template>
 
 <script setup lang="ts">
-import { useCartStore } from "@/stores/cart";
 import MinusCircle from "vue-material-design-icons/MinusCircle.vue";
 import PlusCircle from "vue-material-design-icons/PlusCircle.vue";
 import items from "../data/cart";
-import { IProduct } from "../interface/Product";
+import { type IProduct } from "../interface/Product";
+import { useCartStore } from "../stores/cart";
 
 const cartStore = useCartStore();
 
