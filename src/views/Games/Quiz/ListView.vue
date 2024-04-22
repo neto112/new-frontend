@@ -39,31 +39,26 @@
       Next question
     </button>
   </div>
-  <div v-else-if="showModal">
-    <div
-      class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50"
+  <ModalView :isOpen="showModal">
+    <template #description>
+      <h2 class="text-xl bg font-bold mb-4">Quiz Concluído!</h2>
+      <p class="text-base mb-4">
+        You got {{ correctAnswersCount }} out of {{ getQuiz.length }} questions
+        correct.
+      </p>
+      <p class="text-base mb-4">{{ getFeedbackMessage() }}</p>
+    </template>
+    <button
+      @click="restartQuiz"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
     >
-      <div
-        class="bg-white p-8 rounded shadow-md flex flex-col items-center justify-center"
-      >
-        <h2 class="text-xl font-bold mb-4">Quiz Concluído!</h2>
-        <p class="mb-4">
-          You got {{ correctAnswersCount }} out of
-          {{ getQuiz.length }} questions correct.
-        </p>
-        <p class="mb-4">{{ getFeedbackMessage() }}</p>
-        <button
-          @click="restartQuiz"
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Reiniciar Quiz
-        </button>
-      </div>
-    </div>
-  </div>
+      Reiniciar Quiz
+    </button>
+  </ModalView>
 </template>
 
 <script lang="ts" setup>
+import ModalView from "@/components/ModalView.vue";
 import IconCancel from "@/components/icons/IconCancel.vue";
 import IconCheck from "@/components/icons/IconCheck.vue";
 import { useQuizStore } from "@/stores/quiz";
