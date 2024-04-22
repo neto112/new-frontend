@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineEmits, defineProps, toRefs } from "vue";
+import { toRefs } from "vue";
 import Close from "vue-material-design-icons/Close.vue";
 
 const props = defineProps({

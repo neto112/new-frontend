@@ -95,7 +95,7 @@
 import ModalView from "@/components/ModalView.vue";
 import OIcon from "@/components/icons/OIcon.vue";
 import XIcon from "@/components/icons/XIcon.vue";
-import { computed, defineEmits, defineProps, ref } from "vue";
+import { computed, ref } from "vue";
 import ArrowLeftBold from "vue-material-design-icons/ArrowLeftBold.vue";
 import Restart from "vue-material-design-icons/Restart.vue";
 import BoardBox from "./BoardBox.vue";

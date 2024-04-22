@@ -33,11 +33,10 @@
 </template>
 
 <script lang="ts" setup>
-import XIcon from "@/components/icons/XIcon.vue";
 import OIcon from "@/components/icons/OIcon.vue";
-import XIconOutline from "@/components/icons/XIconOutline.vue";
 import OIconOutline from "@/components/icons/OIconOutline.vue";
-import { defineProps, defineEmits } from "vue";
+import XIcon from "@/components/icons/XIcon.vue";
+import XIconOutline from "@/components/icons/XIconOutline.vue";
 
 defineProps<{
   mark: string;

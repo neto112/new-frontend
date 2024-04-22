@@ -20,8 +20,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
-
 const props = defineProps({ wrongCount: { type: Number, default: 0 } });
 const lte = (num: number) => props.wrongCount >= num;
 </script>

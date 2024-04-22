@@ -11,8 +11,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
-
 defineProps<{
   letters: { type: Array<string>; required: true };
   correctLetters: { type: Array<string>; default: () => [] };

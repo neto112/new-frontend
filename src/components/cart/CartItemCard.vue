@@ -9,8 +9,8 @@
   </div>
 </template>
 
-<script setup lang='ts'>
-import { computed, defineProps } from "vue";
+<script setup lang="ts">
+import { computed } from "vue";
 
 const props = defineProps(["product"]);
 
