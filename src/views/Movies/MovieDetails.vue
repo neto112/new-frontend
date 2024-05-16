@@ -1,15 +1,17 @@
 <template>
-  <div>
-    <div>
+  <div class="bg-gray-600 h-full min-h-screen">
+    <div class="mb-8 relative">
       <router-link to="/movie/tt0409591">
         <img
           src="https://m.media-amazon.com/images/M/MV5BZmQ5NGFiNWEtMmMyMC00MDdiLTg4YjktOGY5Yzc2MDUxMTE1XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
           alt="Naruto Poster"
-          class="featured-img"
+          class="w-full h-80 object-cover relative z-0"
         />
-        <div class="detail">
-          <h3>Naruto</h3>
-          <p>
+        <div
+          class="absolute left-0 right-0 bottom-0 p-4 z-10 backdrop-brightness-50"
+        >
+          <h2 class="text 2xl font-bold mb-2 text-white">Naruto</h2>
+          <p class="text-white">
             Naruto Uzumaki, a mischievous adolescent ninja, struggles as he
             searches for recognition and dreams of becoming the Hokage, the
             village's leader and strongest ninja.
@@ -17,19 +19,35 @@
         </div>
       </router-link>
     </div>
-    <form @submit.prevent="searchMovies()">
-      <input
-        type="text"
-        placeholder="What are you looking for?"
-        v-model="search"
-      />
-      <input type="submit" value="search" />
-    </form>
-    <div>
-      <div v-for="movie in movies" :key="movie.imdbID">
+    <div class="mb-8">
+      <form @submit.prevent="searchMovies" class="text-center">
+        <input
+          type="text"
+          placeholder="What are you looking for?"
+          v-model="search"
+          class="bg-gray-400 placeholder:text-white w-full md:w-3/4 px-4 py-2 rounded-l border border-gray-300 focus:outline-none focus:ring focus:border-blue-300 focus:bg-white"
+        />
+        <button
+          type="submit"
+          class="ml-3 px-8 py-2 bg-green-500 text-white rounded-r focus:outline-none focus:ring focus:border-blue-300 hover:bg-blue-600 transition duration-300"
+        >
+          Search
+        </button>
+      </form>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div
+        v-for="movie in movies"
+        :key="movie.imdbID"
+        class="bg-white p-4 rounded shadow"
+      >
         <router-link :to="'/movie/' + movie.imdbID">
           <div>
-            <img :src="movie.Poster" alt="Movie Poster" />
+            <img
+              :src="movie.Poster"
+              alt="Movie Poster"
+              class="w-full h-80 mb-2"
+            />
             <div>{{ movie.Type }}</div>
           </div>
           <div>

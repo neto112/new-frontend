@@ -30,11 +30,11 @@ const router = createRouter({
           ],
         },
         {
-          path: "/movie",
+          path: "movie",
           component: RouterComponent,
           children: [
             { path: "", component: MovieDetails },
-            { path: "/movie/:id", component: MovieById },
+            { path: ":id", component: MovieById },
           ],
         },
       ],
