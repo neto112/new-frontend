@@ -25,8 +25,6 @@ export const useCartStore = defineStore({
   },
   actions: {
     addToCart(product: IProduct) {
-      console.log("add", product);
-
       const item = this.cart.find((i) => i.id === product.id);
 
       if (item) {
@@ -37,8 +35,6 @@ export const useCartStore = defineStore({
     },
 
     removeFromCart(product: IProduct) {
-      console.log("rem", product);
-
       const item = this.cart.find((i) => i.id === product.id);
 
       if (item) {
@@ -50,8 +46,6 @@ export const useCartStore = defineStore({
       }
     },
     removeAllQuantityFromCart(product: IProduct) {
-      console.log("add", product);
-
       const item = this.cart.find((i) => i.id === product.id);
       if (item) {
         this.cart = this.cart.filter((i) => i.id !== product.id);
