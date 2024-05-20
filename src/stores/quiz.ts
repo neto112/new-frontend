@@ -7,7 +7,6 @@ export const useQuizStore = defineStore({
   state: () => ({
     quiz: [] as IQuiz[],
   }),
-  getters: {},
   actions: {
     async fetchQuiz() {
       try {

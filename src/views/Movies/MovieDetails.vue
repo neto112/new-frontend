@@ -61,19 +61,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
+import { useMoviesStore } from "../../stores/movies";
 
 const search = ref("");
-const movies = ref([]);
+const moviesStore = useMoviesStore();
 
-const searchMovies = () => {
+const movies = computed(() => moviesStore.movies)
+
+const searchMovies = async() => {
   if (search.value !== "") {
-    fetch(`http://www.omdbapi.com/?apikey=77495f55&s=${search.value}`)
-      .then((res) => res.json())
-      .then((data) => {
-        movies.value = data.Search;
-        search.value = "";
-      });
+    await moviesStore.getSearchMovies(search.value)
   }
 };
 </script>

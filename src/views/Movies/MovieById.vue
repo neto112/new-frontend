@@ -55,19 +55,17 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref } from "vue";
+import { computed, onBeforeMount } from "vue";
 import { useRoute } from "vue-router";
+import { useMoviesStore } from "../../stores/movies";
 
-const movie = ref({});
 const route = useRoute();
+const movieStore = useMoviesStore();
 
-onBeforeMount(() => {
-  fetch(
-    `http://www.omdbapi.com/?apikey=77495f55&i=${route.params.id}&plot=full`
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      movie.value = data;
-    });
+const movie = computed(() => movieStore.movie)
+
+onBeforeMount(async () => {
+  const id: any = route.params.id
+  await movieStore.getMovieById(id)
 });
 </script>
