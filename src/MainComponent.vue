@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- drawer init and show -->
-    <header class="bg-white shadow-md p-2 w-full fixed top-0 z-10">
+    <header class="bg-white shadow-md p-2 w-full fixed z-10">
       <div class="items-center justify-between flex">
         <ul class="flex items-center">
           <li>
@@ -222,7 +222,9 @@
       </div>
     </div>
 
-    <RouterView />
+    <main class="pt-10">
+      <RouterView />
+    </main>
   </div>
 </template>
 

@@ -25,7 +25,7 @@
           type="text"
           placeholder="What are you looking for?"
           v-model="search"
-          class="bg-gray-400 placeholder:text-white w-full md:w-3/4 px-4 py-2 rounded-l border border-gray-300 focus:outline-none focus:ring focus:border-blue-300 focus:bg-white"
+          class="bg-gray-500 placeholder:text-white w-full md:w-3/4 px-4 py-2 rounded-l border border-gray-300 focus:outline-none focus:ring focus:border-blue-300 focus:bg-white"
         />
         <button
           type="submit"
@@ -35,24 +35,24 @@
         </button>
       </form>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div class="p-4 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4">
       <div
         v-for="movie in movies"
         :key="movie.imdbID"
-        class="bg-white p-4 rounded shadow"
+        class="bg-gray-500 rounded shadow relative"
       >
         <router-link :to="'/movie/' + movie.imdbID">
-          <div>
+          <div class="relative">
             <img
               :src="movie.Poster"
               alt="Movie Poster"
               class="w-full h-80 mb-2"
             />
-            <div>{{ movie.Type }}</div>
+            <div class="capitalize absolute bottom-5 left-0 bg-green-500 text-white p-2">{{ movie.Type }}</div>
           </div>
-          <div>
+          <div class="p-2 text-white">
             <p>{{ movie.Year }}</p>
-            <h3>{{ movie.Title }}</h3>
+            <h3 class="font-bold">{{ movie.Title }}</h3>
           </div>
         </router-link>
       </div>
