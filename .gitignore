@@ -29,5 +29,6 @@ package-lock.json
 *.sw?
 
 # local env files
+.env
 .env.local
 .env.*.local
