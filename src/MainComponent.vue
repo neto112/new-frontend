@@ -196,8 +196,8 @@
               href="/movie"
               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
-              <Music />
-              <span class="flex-1 ml-3 whitespace-nowrap">Music</span>
+              <Movie />
+              <span class="flex-1 ml-3 whitespace-nowrap">Movie</span>
             </a>
           </li>
           <li>
@@ -238,8 +238,8 @@ import ChevronDown from "vue-material-design-icons/ChevronDown.vue";
 import Controller from "vue-material-design-icons/Controller.vue";
 import Login from "vue-material-design-icons/Login.vue";
 import Logout from "vue-material-design-icons/Logout.vue";
-import Music from "vue-material-design-icons/Music.vue";
 import Menu from "vue-material-design-icons/Menu.vue";
+import Movie from "vue-material-design-icons/Movie.vue";
 import Translate from "vue-material-design-icons/Translate.vue";
 import ViewDashboard from "vue-material-design-icons/ViewDashboard.vue";
 import ProductDescriptionDrawer from "./components/cart/ProductDescriptionDrawer.vue";
