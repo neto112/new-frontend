@@ -1,3 +1,5 @@
+import MovieById from "@/views/Movies/MovieById.vue";
+import MovieDetails from "@/views/Movies/MovieDetails.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import MainComponent from "../MainComponent.vue";
 import RouterComponent from "../components/RouterComponent.vue";
@@ -25,6 +27,14 @@ const router = createRouter({
             { path: "tictactoe", component: TicTacToe },
             { path: "hangman", component: HangmanView },
             { path: "peg-solitaire", component: PegSolitaire },
+          ],
+        },
+        {
+          path: "movie",
+          component: RouterComponent,
+          children: [
+            { path: "", component: MovieDetails },
+            { path: ":id", component: MovieById },
           ],
         },
       ],
