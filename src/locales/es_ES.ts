@@ -15,4 +15,16 @@ export const es_ES = {
     text3:
       "Haz clic en una pieza para seleccionarla, y luego haz clic en una posición adyacente válida para moverla.",
   },
+  modules: {
+    dashboard: "Tablero",
+    gamesList: {
+      solitaire: "Solitario",
+      ticTacToe: "Tres en línea",
+      quiz: "Cuestionario",
+      hangman: "Ahorcado",
+    },
+    ecommerce: "Comercio eletrónico",
+    signIn: "Iniciar sesión",
+    signUp: "Registrarse",
+  },
 };

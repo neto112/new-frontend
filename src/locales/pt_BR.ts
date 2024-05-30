@@ -15,4 +15,19 @@ export const pt_BR = {
     text3:
       "Clique em uma peça para selecioná-la, e depois clique em uma posição adjacente válida para movê-la.",
   },
+  modules: {
+    dashboard: "Painel",
+    games: {
+      title: "Jogos",
+      gamesList: {
+        solitaire: "Resta um",
+        ticTacToe: "Jogo da velha",
+        quiz: "Quiz",
+        hangman: "Jogo da forca",
+      },
+    },
+    ecommerce: "Comércio eletrônico",
+    signIn: "Entrar",
+    signUp: "Registrar",
+  },
 };

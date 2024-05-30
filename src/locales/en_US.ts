@@ -15,4 +15,19 @@ export const en_US = {
     text3:
       "Click on a piece to select it, and then click on a valid adjacent position to move it.",
   },
+  modules: {
+    dashboard: "Dashboard",
+    games: {
+      title: "Games",
+      gamesList: {
+        solitaire: "Solitaire",
+        ticTacToe: "Tic-Tac-Toe",
+        quiz: "Quiz",
+        hangman: "Hangman",
+      },
+    },
+    ecommerce: "E-commerce",
+    signIn: "Sign In",
+    signUp: "Sign Up",
+  },
 };

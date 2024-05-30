@@ -13,7 +13,7 @@
             </button>
           </li>
           <li>
-            <div class="flex-1 px-4">Welcome</div>
+            <div class="flex-1 px-4">{{ $t("dashboard.welcome") }}</div>
           </li>
         </ul>
         <ul class="flex space-x-2 items-center">
@@ -113,7 +113,7 @@
             >
               <Controller class="text-blue-500" />
               <span class="flex-1 ml-3 text-left whitespace-nowrap"
-                >Games
+                >{{ $t("modules.games.title") }}
               </span>
               <ChevronDown />
             </button>
@@ -122,28 +122,28 @@
                 <a
                   href="/games/tictactoe"
                   class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >TicTacToe
+                  >{{ $t("modules.gamesList.ticTacToe") }}
                 </a>
               </li>
               <li>
                 <a
                   href="/games/quiz"
                   class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >Quiz
+                  >{{ $t("modules.gamesList.quiz") }}
                 </a>
               </li>
               <li>
                 <a
                   href="/games/hangman"
                   class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >Hangman
+                  >{{ $t("modules.gamesList.hangman") }}
                 </a>
               </li>
               <li>
                 <a
                   href="/games/peg-solitaire"
                   class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >Peg Solitaire
+                  >{{ $t("modules.gamesList.solitaire") }}
                 </a>
               </li>
             </ul>
@@ -159,7 +159,7 @@
             >
               <Cart class="text-red-500" />
               <span class="flex-1 ml-3 text-left whitespace-nowrap"
-                >E-commerce
+                >{{ $t("modules.ecommerce") }}
               </span>
               <ChevronDown />
             </button>
@@ -197,7 +197,9 @@
               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <Login />
-              <span class="flex-1 ml-3 whitespace-nowrap">Sign In</span>
+              <span class="flex-1 ml-3 whitespace-nowrap">{{
+                $t("modules.signIn")
+              }}</span>
             </a>
           </li>
           <li>
